@@ -53,7 +53,7 @@ if __name__ == "__main__":
             )
 
         ans = get_answer(sql_query=sql_query)
-        return ans
+        return ans, sql_query
 
     def get_answer(sql_query):
         # Execute the query and fetch results
@@ -70,17 +70,91 @@ if __name__ == "__main__":
                     return tabulate(rows, headers=columns, tablefmt="grid")
         except:
             return sql_query
+        
+    # Basic StreamLit app structure
 
-    st.title("NL 2 SQL Response APP")
+    # st.title("NL 2 SQL Response APP")
 
-    # Take user input
-    user_input = st.text_input("Enter your Question:")
+    # # Take user input
+    # user_input = st.text_input("Enter your Question:")
 
+    # if st.button("Submit"):
+    #     if user_input:
+    #         # Send request to backend
+    #         response = get_sql(question=user_input)
+    #         # Display response
+    #         st.write(f"{response}")
+    #     else:
+    #         st.warning("Please enter a value before submitting.")
+
+    
+    # styled streamlit app
+    st.markdown(
+        """
+        <style>
+        /* Apply background color */
+        .main {
+            background-color: #0e1117;
+            color: #fafafa;
+        }
+        
+        /* Set input field and button colors */
+        input, .stButton button {
+            background-color: #262730;
+            color: #fafafa;
+        }
+        
+        /* Change text input placeholder color */
+        input::placeholder {
+            color: #fafafa;
+        }
+
+        /* Change font and text color */
+        h1, h2, h3, h4, h5, h6, p, div {
+            color: #fafafa;
+        }
+
+        /* Customize warning message style */
+        .stAlert {
+            background-color: #262730;
+            color: #fafafa;
+        }
+
+        /* Code block styling */
+        pre {
+            background-color: #1e1e1e;
+            color: #fafafa;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Title and Subtitle
+    st.title("Natural Language to SQL Query to Response Generator")
+    # st.subheader("Convert your questions into SQL queries effortlessly")
+
+
+    # Input Field
+    user_input = st.text_input("Enter your question:", placeholder="e.g., 'Give me the project which name contains Project.'")
+
+    # Adding some space before the button
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Button and interaction
     if st.button("Submit"):
         if user_input:
-            # Send request to backend
-            response = get_sql(question=user_input)
+            # Placeholder for backend call (replace with actual function)
+            response, sql = get_sql(question=user_input)
+            
             # Display response
+            st.success("Here is your SQL query:")
+            st.code(f"{sql}", language='sql')  
+            st.success("Here is your Response:")
             st.write(f"{response}")
         else:
             st.warning("Please enter a value before submitting.")
+
+    # Add a footer or a message
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.info("Need help? Reach out to our support team for any queries!")
