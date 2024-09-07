@@ -34,7 +34,7 @@ if __name__ == "__main__":
             messages=[
                 {
                     "role": "system",
-                    "content": prompts["sql_generator_with_modification_of_greetings"],
+                    "content": prompts["sql_gen_with_all_models_schema"],
                 },
                 {"role": "user", "content": question},
             ],
