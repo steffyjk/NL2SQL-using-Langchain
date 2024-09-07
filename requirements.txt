@@ -1,0 +1,8 @@
+langchain_openai
+langchain_community
+langchain
+groq
+tabulate
+psycopg2
+psycopg2-binary
+python-dotenv
