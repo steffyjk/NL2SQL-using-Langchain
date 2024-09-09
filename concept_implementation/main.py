@@ -34,7 +34,7 @@ if __name__ == "__main__":
             messages=[
                 {
                     "role": "system",
-                    "content": prompts["sql_gen_with_all_models_schema"],
+                    "content": prompts["updated_sql_gen_prompt"],
                 },
                 {"role": "user", "content": question},
             ],
@@ -66,8 +66,9 @@ if __name__ == "__main__":
                     columns = result.keys()
                     for row in rows:
                         print(row)
-                    print(tabulate(rows, headers=columns, tablefmt="grid"))
-                    return tabulate(rows, headers=columns, tablefmt="grid")
+                    # print(tabulate(rows, headers=columns, tablefmt="grid"))
+                    # return tabulate(rows, headers=columns, tablefmt="grid")
+                    return rows
         except:
             return sql_query
         
